@@ -209,7 +209,7 @@ const t1 = b => card(1, `<div class="t1 ${b.img?'':'noimg'}">${b.img?`<div class
   <div class="facts">${b.facts.map(([v,c])=>`<div><b>${v}</b><span>${c}</span></div>`).join('')}</div></div></div>`, {pdf:b.pdf, chipNote:b.img?'':'без картинки'});
 
 const t2 = b => card(2, `<div class="t2"><div class="img">${b.qr?`<div class="qr" data-qr="https://${b.qr}"></div>`:`<img src="${A(b.img)}" alt="">`}</div>
-  <div><h4>${b.title}</h4><p>${b.text}</p>${b.link?`<a class="lnk" href="https://${b.qr}" target="_blank" rel="noopener">${b.link}</a>`:''}${b.qr?`<div class="url">QR → ${b.qr}</div>`:''}</div></div>`, {chipNote:b.qr?'QR вместо картинки':''});
+  <div><h4>${b.title}</h4><p>${b.text}</p>${b.link?`<a class="lnk" href="https://${b.qr}" target="_blank" rel="noopener">${b.link}</a>`:''}</div></div>`, {chipNote:b.qr?'QR вместо картинки':''});
 
 const t3 = b => card(3, `<div class="t3"><div><h4>${b.title}</h4>
   ${b.steps?`<ol class="steps">${b.steps.map((s,i)=>`<li><b>Шаг ${i+1}</b><span>${s}</span></li>`).join('')}</ol>`:''}
