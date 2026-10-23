@@ -14,6 +14,27 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="build" content="20261023-153412">
+<script>
+/* самообновление: метку сборки сверяем с сервером в обход кэша, вышла новая сборка, перезагружаемся */
+(function(){
+  var BUILD = '20261023-153412';
+  function check(){
+    if (location.protocol.indexOf('http') !== 0 || !window.fetch) return;
+    fetch(location.pathname + '?build-check=' + Date.now(), {cache: 'no-store'})
+      .then(function(r){ return r.ok ? r.text() : ''; })
+      .then(function(t){
+        var m = t.match(/<meta name="build" content="([^"]+)"/);
+        if (!m || m[1] === BUILD) return;
+        if (location.search.indexOf('v=' + m[1]) !== -1) return;  // уже пробовали эту сборку, не зацикливаемся
+        location.replace(location.pathname + '?v=' + encodeURIComponent(m[1]) + location.hash);
+      })
+      .catch(function(){});
+  }
+  check();
+  document.addEventListener('visibilitychange', function(){ if (!document.hidden) check(); });
+})();
+</script>
 <meta name="claude:viewport-fit-sides" content="cover">
 
 <style>
