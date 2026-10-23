@@ -14,11 +14,11 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="build" content="20261023-153412">
+<meta name="build" content="20261023-155337">
 <script>
 /* самообновление: метку сборки сверяем с сервером в обход кэша, вышла новая сборка, перезагружаемся */
 (function(){
-  var BUILD = '20261023-153412';
+  var BUILD = '20261023-155337';
   function check(){
     if (location.protocol.indexOf('http') !== 0 || !window.fetch) return;
     fetch(location.pathname + '?build-check=' + Date.now(), {cache: 'no-store'})
@@ -263,7 +263,7 @@ const PL_LEVELS = {img:'lion-gold', title:'3 уровня привилегий',
 /* три уровня в одной карточке (23.10): тип 6 только в две колонки, уровни строками внутри значения */
 const lv = (b, s, g) => [`Бронзовый: ${b}`, `Серебряный: ${s}`, `Золотой: ${g}`];
 const PL_TABLE = {title:'Привилегии по уровням', rows:[
-  ['Как получить уровень', lv('стартовый уровень программы','следующий после Бронзового, по итогам месяца','следующий после Серебряного, по итогам месяца')],
+  ['Как получить уровень', lv('стартовый уровень программы','следующий после Бронзового, по итогам месяца, если выполнены условия уровня','следующий после Серебряного, по итогам месяца, если выполнены условия уровня')],
   ['Обмен баллов на рубли', lv('до 20 000 ₽ в месяц','до 30 000 ₽ в месяц','до 50 000 ₽ в месяц')],
   ['Лимит кэшбэка', lv('до 10 000 баллов в месяц','до 12 500 баллов в месяц','до 15 000 баллов в месяц')],
   ['Предложения от банка', lv('1 в месяц','3 в месяц','5 в месяц')],
@@ -360,7 +360,7 @@ function renderMenu(){
   document.getElementById('menu').innerHTML = `<div class="cap">ПРОДУКТЫ</div>` + items.map(n=>{
     const key = n==='Программа лояльности'?'pl': n==='Расчётно-кассовое обслуживание'?'rko':'';
     const on = key && key===state.screen;
-    return `<button class="item ${on?'on':''} ${key?'':'dim'}" data-go="${key}">${n}${key==='pl'?'<span class="new">новый</span>':''}</button>`;
+    return `<button class="item ${on?'on':''} ${key?'':'dim'}" data-go="${key}">${n}</button>`;
   }).join('') + `<div class="cap">КОММЕРЧЕСКОЕ ПРЕДЛОЖЕНИЕ</div><button class="item dim">Документы</button><button class="item dim">Конструктор КП</button>`;
 }
 
