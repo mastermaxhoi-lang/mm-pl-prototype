@@ -214,8 +214,8 @@ const t3 = b => card(3, `<div class="t3"><div><h4>${b.title}</h4>
   ${b.bullets?`<ul class="dots">${b.bullets.map(s=>`<li>${s}</li>`).join('')}</ul>`:''}</div>
   <div class="img"><img src="${A(b.img)}" alt=""></div></div>`);
 
-const t4 = b => card(4, `<div class="t4"><h3 class="bt">${b.title}</h3>${b.items.map(i=>`<div class="row"><div class="img"><img src="${A(i.img)}" alt=""></div>
-  <div><h5>${i.title}</h5><p>${i.text}</p><strong>${i.bold}</strong></div></div>`).join('')}</div>`);
+const t4 = b => card(4, `<div class="t4"><h3 class="bt">${b.title}</h3>${b.items.map(i=>`<div class="row"><div class="img">${i.img?`<img src="${A(i.img)}" alt="">`:'<div class="ph"></div>'}</div>
+  <div><h5>${i.title}</h5><p>${i.text}</p>${i.bold?`<strong>${i.bold}</strong>`:''}</div></div>`).join('')}</div>`);
 
 const t5 = b => card(5, `<div class="t5"><h3 class="bt">${b.title}</h3><div class="grid">${b.items.map(i=>`<div class="it"><div class="img">${i.img?`<img src="${A(i.img)}" alt="">`:'<div class="ph"></div>'}</div>
   <div><h5>${i.title}</h5><p>${i.text}</p></div></div>`).join('')}</div></div>`);
@@ -228,7 +228,7 @@ const t7 = b => card(7, `<div class="t7"><h4>Частые вопросы</h4>${b
 const SITE = (path, text) => `<a href="https://alfabank.ru/sme/loyalty/${path}" target="_blank" rel="noopener">${text}</a>`;
 const PL_HERO = {img:'pl-hero-logo-plate', title:'Альфа-Выгодно для бизнеса', sub:'Повышайте уровень, получайте больше баллов, обменивайте их на рубли и скидки', pdf:true,
   facts:[['1 балл = 1 ₽','обменивайте баллы на рубли и тратьте их на своё усмотрение'],['Кэшбэк баллами до 100%','участвуйте в акциях для бизнеса каждую неделю'],['Категории кэшбэка','выбирайте категории каждый месяц']]};
-/* тип 5 вместо типа 3 (встреча 23.10): шаг стал заголовком пункта, картинки к шагам подбираем */
+/* тип 4 вместо типа 3: шаг стал заголовком пункта, список столбиком (тип 5 по два в ряд давал 2+1), иконки к шагам подбираем */
 const PL_START = {title:'Как начать получать выгоду', items:[
   {title:'Шаг 1',text:'Откройте расчётный счёт для бизнеса в рублях в Альфа-Банке'},
   {title:'Шаг 2',text:'Войдите в интернет-банк или мобильное приложение Альфа-Бизнес'},
@@ -284,7 +284,7 @@ const PT_FAQ = {qa:[
   ['Когда я получу кэшбэк или скидку?','Скидка применяется сразу при оплате у партнёра. Кэшбэк начисляется после выполнения условий предложения. Точные сроки указаны в карточке предложения и правилах.'],
   ['Что делать, если скидка или кэшбэк не пришли?','Проверьте, что выполнили все условия из карточки: минимальная сумма, сроки, активация промокода. Учтите срок начисления, кэшбэк приходит не всегда мгновенно. Если срок прошёл, а выгоды нет, напишите в поддержку Альфа-Бизнес в чате приложения или позвоните по телефону +7 495 755 58 58. Укажите предложение и дату покупки, поможем разобраться.']]};
 
-const TAB_PL = () => [t1(PL_HERO), t5(PL_START), t1(PL_LEVELS), ...PL_TABLES.map(t6), t5(PL_EARN), t5(PL_SPEND), t7(PL_FAQ)].join('');
+const TAB_PL = () => [t1(PL_HERO), t4(PL_START), t1(PL_LEVELS), ...PL_TABLES.map(t6), t5(PL_EARN), t5(PL_SPEND), t7(PL_FAQ)].join('');
 const TAB_FR = () => [t1(FR_HERO), t3(FR_HOW), t2(FR_QR), t5(FR_WHY), t7(FR_FAQ)].join('');
 const TAB_PT = () => [t1(PT_HERO), t3(PT_CATS), t4(PT_POP), t2(PT_QR), t3(PT_HOW), t7(PT_FAQ)].join('');
 /* временный вариант (вкладка в РКО) снят 23.10: сразу делаем раздел, старую вкладку убираем в день запуска */
